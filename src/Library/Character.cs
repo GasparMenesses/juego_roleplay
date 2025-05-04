@@ -7,11 +7,17 @@ public abstract class Character // clase abstracta
     public int MaxHealth { get; protected set; }
     public int CurrentHealth { get; protected set; }
     
-    protected Character(string race ,string name, int maxHealth) //protected es para que solo puedan acceder la clase y subclases
+    public int Ataque { get; protected set; }
+    
+    public int Defensa { get; protected set; }
+    
+    protected Character(string race ,string name, int maxHealth, int ataque, int defensa) //protected es para que solo puedan acceder la clase y subclases
     {
         Race = race;
         Name = name;
         MaxHealth = maxHealth;
         CurrentHealth = maxHealth;
+        Ataque = ataque;
+        Defensa = defensa;
     }
 }
