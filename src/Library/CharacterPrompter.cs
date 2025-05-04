@@ -20,8 +20,7 @@ namespace Library
                     Console.WriteLine("ERROR, por favor ingrese una opción válida");
                 }
             }
-
-
+            
             Console.WriteLine("Ingrese un nombre para su personaje: ");
             Nombre = Console.ReadLine();
 

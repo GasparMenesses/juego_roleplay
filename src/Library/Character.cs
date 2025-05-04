@@ -12,5 +12,4 @@ public abstract class Character // clase abstracta
         MaxHealth = maxHealth;
         CurrentHealth = maxHealth;
     }
-    
 }

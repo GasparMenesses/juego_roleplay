@@ -3,6 +3,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        
         // Creo dos personajes para que se enfrenten
         var jugador  = CharacterPrompter.Prompt("Selecciona tu personaje");
         Console.WriteLine($"Has creado a {jugador.Name} con {jugador.CurrentHealth} de vida.");
