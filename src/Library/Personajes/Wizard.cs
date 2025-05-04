@@ -1,4 +1,4 @@
-﻿namespace Library;
+﻿namespace Library.Personajes;
 
 public class Wizard : Character
 {

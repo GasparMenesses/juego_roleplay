@@ -1,4 +1,6 @@
 ﻿using Library;
+using Library.Personajes;
+
 class Program
 {
     static void Main(string[] args)
@@ -11,6 +13,11 @@ class Program
         var oponente = CharacterPrompter.Prompt("Selecciona un oponente");
         Console.WriteLine($"Has creado a el {oponente.Race} {oponente.Name} con {oponente.CurrentHealth} de vida, {oponente.Ataque} de ataque y {oponente.Defensa} de defensa");
         
+        Actions.Attack(jugador,oponente);
+        Console.WriteLine($"Has creado a el {oponente.Race} {oponente.Name} con {oponente.CurrentHealth} de vida, {oponente.Ataque} de ataque y {oponente.Defensa} de defensa");
+        
+        Actions.Heal(oponente);
+        Console.WriteLine($"Has creado a el {oponente.Race} {oponente.Name} con {oponente.CurrentHealth} de vida, {oponente.Ataque} de ataque y {oponente.Defensa} de defensa");
     }
 }
 

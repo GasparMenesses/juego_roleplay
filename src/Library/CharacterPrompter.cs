@@ -26,9 +26,9 @@ namespace Library
 
             Character jugador = SeleccionPersonaje switch
             {
-                "1" => new Wizard(Nombre),
-                "2" => new Elve(Nombre),
-                "3" => new Dwarve(Nombre),
+                "1" => new Personajes.Wizard(Nombre),
+                "2" => new Personajes.Elve(Nombre),
+                "3" => new Personajes.Dwarve(Nombre),
             };
             
             return jugador;
