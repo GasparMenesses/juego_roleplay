@@ -1,6 +1,6 @@
 ﻿namespace Library;
 
-public class Dwarves
+public class Shield
 {
     
 }

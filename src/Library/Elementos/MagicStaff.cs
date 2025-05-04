@@ -1,6 +1,6 @@
 ﻿namespace Library;
 
-public class Elves
+public class MagicStaff
 {
     
 }
