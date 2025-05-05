@@ -161,8 +161,8 @@ class Program
             Console.WriteLine($"VIDA {jugador.Name} = {jugador.CurrentHealth}          VIDA {oponente.Name} = {oponente.CurrentHealth} \n");
 
             // Turno del jugador
-            Console.WriteLine($"\n{jugador.Name}, elige una acción:\n 1 - Atacar\n 2 - Curar\n");
             string action = "";
+            Console.WriteLine($"\nYo, {jugador.Name} te derrotare a como de lugar!! \n elige una acción:\n 1 - Atacar\n 2 - Curar\n");
             while (action != "1" && action != "2")
             {
                 action = Console.ReadLine();
@@ -185,7 +185,7 @@ class Program
             }
 
             // Turno del oponente
-            Console.WriteLine($"\n{oponente.Name}, elige una acción:\n 1 - Atacar\n 2 - Curar\n");
+            Console.WriteLine($"\nYo, {oponente.Name} te destrozaré con mis habilidades!! \n elige una acción:\n 1 - Atacar\n 2 - Curar\n");
             string action2 = "";
             while (action2 != "1" && action2 != "2")
             {
