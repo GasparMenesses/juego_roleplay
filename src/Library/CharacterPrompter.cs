@@ -30,7 +30,6 @@ namespace Library
                 "2" => new Personajes.Elve(Nombre),
                 "3" => new Personajes.Dwarve(Nombre),
             };
-            
             return jugador;
         }
     }
