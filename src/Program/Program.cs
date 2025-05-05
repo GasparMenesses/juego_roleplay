@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // cumple con SRP ya que es la clase que se encarga de rquestar el flujo general de la partida (título, selección de personajes, equipamiento, combate y cierre)
+        // cumple con SRP ya que es la clase que se encarga de orquestar el flujo general de la partida (título, selección de personajes, equipamiento, combate y cierre)
         // ============================================
         // 1. Título del juego
         // Muestra en pantalla el nombre de la partida.
