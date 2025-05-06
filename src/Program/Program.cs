@@ -77,7 +77,7 @@ class Program
                 case "7":
                     autenticator = SpecialItems.SpellBook(jugador);
                     if (autenticator)
-                        Console.WriteLine($"El libro de hechizos ha aumentado tu defensa a {jugador.Defensa}");
+                        Console.WriteLine($"El libro de hechizos ha aumentado tu ataque a {jugador.Ataque}");
                     else
                         Console.WriteLine("Lo siento, solo un mago puede usar este ítem. Elige otro");
                     break;
@@ -142,7 +142,7 @@ class Program
                 case "7":
                     autenticator = SpecialItems.SpellBook(oponente);
                     if (autenticator)
-                        Console.WriteLine($"El libro de hechizos ha aumentado tu defensa a {oponente.Defensa}");
+                        Console.WriteLine($"El libro de hechizos ha aumentado tu ataque a {oponente.Ataque}");
                     else
                         Console.WriteLine("Lo siento, solo un mago puede usar este ítem. Elige otro");
                     break;
