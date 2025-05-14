@@ -1,43 +1,46 @@
-﻿namespace Library
+﻿using Library.Interfaces;
+
+namespace Library;
+
+public class Character : ICharacter
 {
-    // ============================================
-    // Clase base abstracta para todos los personajes.
-    // Cumple con SRP porque su única responsabilidad es definir y almacenar los atributos básicos que comparten todos los personajes
-    // ============================================
-    public abstract class Character
+    public string Name { get; set; }
+    public string Race { get; set; }
+    public int CurrentHealth { get; set; }
+    public  int MaxHealth { get; }
+    public int Attack { get; set; }
+    public int Defense { get; set; }
+    
+    
+    public Character(string nombre,string race, int maxhealth, int attack, int defense)
     {
-        // Nombre de la raza (Mago, Elfo, Enano, etc.)
-        public string Race { get; protected set; }
-
-        // Nombre personalizado del personaje
-        public string Name { get; protected set; }
-
-        // Salud máxima que el personaje puede tener
-        public int MaxHealth { get; protected set; }
-
-        // Salud actual, puede disminuir o restaurarse durante el juego
-        public int CurrentHealth { get; set; }
-
-        // Poder de ataque del personaje
-        public int Ataque { get; set; }
-
-        // Poder de defensa del personaje
-        public int Defensa { get; set; }
-
-        // ============================================
-        // Constructor protegido
-        // Inicializa todos los valores básicos de un personaje:
-        // raza, nombre, salud máxima y atributos de combate.
-        // Protected para que solo subclases puedan invocarlo.
-        // ============================================
-        protected Character(string race, string name, int maxHealth, int ataque, int defensa)
-        {
-            Race = race;
-            Name = name;
-            MaxHealth = maxHealth;
-            CurrentHealth = maxHealth;  // Empieza con salud completa
-            Ataque = ataque;
-            Defensa = defensa;
-        }
+        Name = nombre;
+        Race = race;
+        CurrentHealth = maxhealth;
+        MaxHealth = maxhealth;
+        Attack = attack;
+        Defense = defense;
     }
+
+    public void Atacar(ICharacter attacker, ICharacter attacked )
+    {
+        if (attacked.Defense > attacker.Attack)
+            attacked.CurrentHealth -= 1;
+        else
+            attacked.CurrentHealth -= (attacker.Attack - attacked.Defense);
+    }
+    
+    public void Curar(ICharacter curado)
+    {
+        curado.CurrentHealth += 5;
+        if (curado.CurrentHealth > curado.MaxHealth)
+            curado.CurrentHealth = curado.MaxHealth;
+    }
+    
+    public void AgregarItem(ICharacter curado)
+    {
+        
+    }
+
+
 }

@@ -4,15 +4,15 @@ public class DefensiveItems
 {
     public static void Shield(Character name)
     {
-        name.Defensa += 5;
+        name.Defense += 5;
     }
 
     public static void Armor(Character name)
     {
-        name.Defensa += 5;
+        name.Defense += 5;
     }
     public static void Helmet(Character name)
     {
-        name.Defensa += 3;
+        name.Defense += 3;
     }
 }

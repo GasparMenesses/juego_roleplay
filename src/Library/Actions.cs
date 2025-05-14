@@ -4,10 +4,10 @@ public class Actions
 {
     public static void Attack(Character attacker, Character attacked)
     {
-        if (attacked.Defensa > attacker.Ataque)
+        if (attacked.Defense > attacker.Attack)
             attacked.CurrentHealth -= 1;
         else
-            attacked.CurrentHealth -= (attacker.Ataque - attacked.Defensa);
+            attacked.CurrentHealth -= (attacker.Attack - attacked.Defense);
     }
     public static void Heal(Character healed)
     {

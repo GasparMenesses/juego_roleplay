@@ -8,7 +8,7 @@ public class SpecialItems
         {
             return false;
         }
-        name.Ataque += 10;
+        name.Attack += 10;
         return true;
     }
 }
