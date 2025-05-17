@@ -95,15 +95,15 @@ namespace Program
                 switch (seleccion_item)
                 {
                     case "1":
-                        OfensiveItems.Sword(jugador);
+                        Items.Sword(jugador);
                         Console.WriteLine($"La espada ha aumentado tu poder de ataque a {jugador.Attack}");
                         break;
                     case "2":
-                        OfensiveItems.MagicStaff(jugador);
+                        Items.MagicStaff(jugador);
                         Console.WriteLine($"El bastón mágico ha aumentado tu poder de ataque a {jugador.Attack}");
                         break;
                     case "3":
-                        OfensiveItems.Axe(jugador);
+                        Items.Axe(jugador);
                         Console.WriteLine($"El hacha ha aumentado tu poder de ataque a {jugador.Attack}");
                         break;
                     case "4":
@@ -199,15 +199,15 @@ namespace Program
                 switch (seleccion_item)
                 {
                     case "1":
-                        OfensiveItems.Sword(oponente);
+                        Items.Sword(oponente);
                         Console.WriteLine($"La espada ha aumentado tu poder de ataque a {oponente.Attack}");
                         break;
                     case "2":
-                        OfensiveItems.MagicStaff(oponente);
+                        Items.MagicStaff(oponente);
                         Console.WriteLine($"El bastón mágico ha aumentado tu poder de ataque a {oponente.Attack}");
                         break;
                     case "3":
-                        OfensiveItems.Axe(oponente);
+                        Items.Axe(oponente);
                         Console.WriteLine($"El hacha ha aumentado tu poder de ataque a {oponente.Attack}");
                         break;
                     case "4":
