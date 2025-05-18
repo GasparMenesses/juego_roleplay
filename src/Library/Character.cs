@@ -1,43 +1,55 @@
-﻿namespace Library
+﻿using Library.Interfaces;
+
+namespace Library;
+
+public class Character : ICharacter
 {
-    // ============================================
-    // Clase base abstracta para todos los personajes.
-    // Cumple con SRP porque su única responsabilidad es definir y almacenar los atributos básicos que comparten todos los personajes
-    // ============================================
-    public abstract class Character
+    public string Name { get; }
+    public string Race { get; }
+    public int CurrentHealth { get; set; }
+    public  int MaxHealth { get; }
+    public int Attack { get; set; }
+    public int Defense { get; set; }
+    public List<IItem> Item { get; set; } 
+
+
+    public Character(string name,string race, int maxhealth, int attack, int defense)
     {
-        // Nombre de la raza (Mago, Elfo, Enano, etc.)
-        public string Race { get; protected set; }
+        Name = name;
+        Race = race;
+        CurrentHealth = maxhealth;
+        MaxHealth = maxhealth;
+        Attack = attack;
+        Defense = defense;
+        Item = new List<IItem>();
+    }
 
-        // Nombre personalizado del personaje
-        public string Name { get; protected set; }
-
-        // Salud máxima que el personaje puede tener
-        public int MaxHealth { get; protected set; }
-
-        // Salud actual, puede disminuir o restaurarse durante el juego
-        public int CurrentHealth { get; set; }
-
-        // Poder de ataque del personaje
-        public int Ataque { get; set; }
-
-        // Poder de defensa del personaje
-        public int Defensa { get; set; }
-
-        // ============================================
-        // Constructor protegido
-        // Inicializa todos los valores básicos de un personaje:
-        // raza, nombre, salud máxima y atributos de combate.
-        // Protected para que solo subclases puedan invocarlo.
-        // ============================================
-        protected Character(string race, string name, int maxHealth, int ataque, int defensa)
+    public void Atacar(ICharacter attacked)
+    {
+        if (attacked.Defense > this.Attack)
+            attacked.CurrentHealth -= 1;
+        else
+            attacked.CurrentHealth -= (this.Attack - attacked.Defense);
+    }
+    
+    public void Curar()
+    {
+        this.CurrentHealth += 10;
+        if (this.CurrentHealth > this.MaxHealth)
+            this.CurrentHealth = this.MaxHealth;
+    }
+    
+    public void AgregarItem(IItem item)//Todos los items son IItem
+    {
+        if (item is ISpecialItemElement special && !special.CanBeEquipped)
         {
-            Race = race;
-            Name = name;
-            MaxHealth = maxHealth;
-            CurrentHealth = maxHealth;  // Empieza con salud completa
-            Ataque = ataque;
-            Defensa = defensa;
+            return;//No devuelve nada en particular, solo finaliza el metodo, esto permite que el metodo sea void
         }
+        this.Item.Add(item);
+    }
+
+    public bool RemoverItem(IItem item)
+    {
+        return this.Item.Remove(item);
     }
 }
