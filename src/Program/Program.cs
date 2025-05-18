@@ -95,27 +95,27 @@ namespace Program
                 switch (seleccion_item)
                 {
                     case "1":
-                        Items.Sword(jugador);
+                        Item.Sword(jugador);
                         Console.WriteLine($"La espada ha aumentado tu poder de ataque a {jugador.Attack}");
                         break;
                     case "2":
-                        Items.MagicStaff(jugador);
+                        Item.MagicStaff(jugador);
                         Console.WriteLine($"El bastón mágico ha aumentado tu poder de ataque a {jugador.Attack}");
                         break;
                     case "3":
-                        Items.Axe(jugador);
+                        Item.Axe(jugador);
                         Console.WriteLine($"El hacha ha aumentado tu poder de ataque a {jugador.Attack}");
                         break;
                     case "4":
-                        DefensiveItems.Shield(jugador);
+                        Item.Shield(jugador);
                         Console.WriteLine($"El escudo ha aumentado tu poder de defensa a {jugador.Defense}");
                         break;
                     case "5":
-                        DefensiveItems.Armor(jugador);
+                        Item.Armor(jugador);
                         Console.WriteLine($"La armadura ha aumentado tu poder de defensa a {jugador.Defense}");
                         break;
                     case "6":
-                        DefensiveItems.Helmet(jugador);
+                        Item.Helmet(jugador);
                         Console.WriteLine($"El casco ha aumentado tu poder de defensa a {jugador.Defense}");
                         break;
                     case "7":
@@ -199,27 +199,27 @@ namespace Program
                 switch (seleccion_item)
                 {
                     case "1":
-                        Items.Sword(oponente);
+                        Item.Sword(oponente);
                         Console.WriteLine($"La espada ha aumentado tu poder de ataque a {oponente.Attack}");
                         break;
                     case "2":
-                        Items.MagicStaff(oponente);
+                        Item.MagicStaff(oponente);
                         Console.WriteLine($"El bastón mágico ha aumentado tu poder de ataque a {oponente.Attack}");
                         break;
                     case "3":
-                        Items.Axe(oponente);
+                        Item.Axe(oponente);
                         Console.WriteLine($"El hacha ha aumentado tu poder de ataque a {oponente.Attack}");
                         break;
                     case "4":
-                        DefensiveItems.Shield(oponente);
+                        Item.Shield(oponente);
                         Console.WriteLine($"El escudo ha aumentado tu poder de defensa a {oponente.Defense}");
                         break;
                     case "5":
-                        DefensiveItems.Armor(oponente);
+                        Item.Armor(oponente);
                         Console.WriteLine($"La armadura ha aumentado tu poder de defensa a {oponente.Defense}");
                         break;
                     case "6":
-                        DefensiveItems.Helmet(oponente);
+                        Item.Helmet(oponente);
                         Console.WriteLine($"El casco ha aumentado tu poder de defensa a {oponente.Defense}");
                         break;
                     case "7":

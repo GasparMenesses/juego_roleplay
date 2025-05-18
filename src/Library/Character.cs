@@ -4,43 +4,52 @@ namespace Library;
 
 public class Character : ICharacter
 {
-    public string Name { get; set; }
-    public string Race { get; set; }
+    public string Name { get; }
+    public string Race { get; }
     public int CurrentHealth { get; set; }
     public  int MaxHealth { get; }
     public int Attack { get; set; }
     public int Defense { get; set; }
-    
-    
-    public Character(string nombre,string race, int maxhealth, int attack, int defense)
+    public List<IItem> Item { get; set; } 
+
+
+    public Character(string name,string race, int maxhealth, int attack, int defense)
     {
-        Name = nombre;
+        Name = name;
         Race = race;
         CurrentHealth = maxhealth;
         MaxHealth = maxhealth;
         Attack = attack;
         Defense = defense;
+        Item = new List<IItem>();
     }
 
-    public void Atacar(ICharacter attacker, ICharacter attacked )
+    public void Atacar(ICharacter attacked)
     {
-        if (attacked.Defense > attacker.Attack)
+        if (attacked.Defense > this.Attack)
             attacked.CurrentHealth -= 1;
         else
-            attacked.CurrentHealth -= (attacker.Attack - attacked.Defense);
+            attacked.CurrentHealth -= (this.Attack - attacked.Defense);
     }
     
-    public void Curar(ICharacter curado)
+    public void Curar()
     {
-        curado.CurrentHealth += 5;
-        if (curado.CurrentHealth > curado.MaxHealth)
-            curado.CurrentHealth = curado.MaxHealth;
+        this.CurrentHealth += 10;
+        if (this.CurrentHealth > this.MaxHealth)
+            this.CurrentHealth = this.MaxHealth;
     }
     
-    public void AgregarItem(ICharacter curado)
+    public void AgregarItem(IItem item)//Todos los items son IItem
     {
-        
+        if (item is ISpecialItemElement special && !special.CanBeEquipped)
+        {
+            return;//No devuelve nada en particular, solo finaliza el metodo, esto permite que el metodo sea void
+        }
+        this.Item.Add(item);
     }
 
-
+    public bool RemoverItem(IItem item)
+    {
+        return this.Item.Remove(item);
+    }
 }
