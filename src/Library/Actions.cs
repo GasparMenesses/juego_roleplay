@@ -14,22 +14,10 @@ public class Actions
     /// </summary>
     public void Attack(ICharacter attacked)
     {
-        int totalAttack = this.Character.Attack;
-        int totalDefense = attacked.Defense;
-        foreach (IItem item in this.Character.Item)
-        {
-            if (item is IOffensiveItemElement offensive)
-                totalAttack += offensive.AttackValue;
-        }
-        foreach (IItem item in attacked.Item)
-        {
-            if (item is IDefensiveItemElement defensive)
-                totalDefense += defensive.DefenseValue;
-        }
-        if (totalDefense > totalAttack)
+        if (attacked.Defense > this.Character.Attack)
             attacked.CurrentHealth -= 1;
         else
-            attacked.CurrentHealth -= (totalAttack - totalDefense);
+            attacked.CurrentHealth -= (this.Character.Attack - attacked.Defense);
         if (attacked.CurrentHealth < 0)
             attacked.CurrentHealth = 0;
     }
@@ -45,13 +33,18 @@ public class Actions
     /// <summary>
     /// Recibe el item que se desea agregar
     /// </summary>
-    public void AddItem(IItem item)//Todos los items son IItem
+    public bool AddItem(IItem item)//Todos los items son IItem
     {
         if (item is ISpecialItemElement special && !special.CanBeEquipped)
         {
-            return;//No devuelve nada en particular, solo finaliza el metodo, esto permite que el metodo sea void
+            return false;//Devuelve false si no pudo ser equipado
         }
         this.Character.Item.Add(item);
+        if (item is IOffensiveItemElement offensive)
+            this.Character.Attack += offensive.AttackValue;
+        if (item is IDefensiveItemElement defensive)
+            this.Character.Defense += defensive.DefenseValue;
+        return true;
     }
     /// <summary>
     /// Recibe el item que se desea remover, devuelve true en caso de que se haya removido con exito, false en caso
@@ -59,6 +52,14 @@ public class Actions
     /// </summary>
     public bool RemoveItem(IItem item)
     {
-        return this.Character.Item.Remove(item);
+        bool wasRemoved = this.Character.Item.Remove(item);
+        if (wasRemoved)
+        {
+            if (item is IOffensiveItemElement offensive)
+                this.Character.Attack -= offensive.AttackValue;
+            if (item is IDefensiveItemElement defensive)
+                this.Character.Defense -= defensive.DefenseValue;
+        }
+        return wasRemoved;
     }
 }

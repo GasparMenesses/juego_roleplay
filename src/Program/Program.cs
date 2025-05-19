@@ -71,16 +71,15 @@ namespace Program
             // en los atributos según el tipo de ítem seleccionado.
             // ============================================
             Console.WriteLine("Es hora de que se equipe, elige dos items");
-            for (int i = 0; i < 2; i++)
+            while (jugador.Item.Count < 2)
             {
-                bool autenticator = true;
                 string seleccion_item = "0";
                 int numero = Convert.ToInt32(seleccion_item);
-                Console.WriteLine($"{i + 1}/2");
 
                 // Validación de la opción (1–7)
                 while (numero > 7 || numero < 1)
                 {
+                    Console.WriteLine($"{jugador.Item.Count}/2");
                     Console.WriteLine(
                         " 1 - Espada\n 2 - Baculo Magico\n 3 - Hacha \n 4 - Shield\n 5 - Armor\n 6 - Helmet \n 7 - SpellBook");
                     seleccion_item = Console.ReadLine();
@@ -95,41 +94,43 @@ namespace Program
                 switch (seleccion_item)
                 {
                     case "1":
-                        Item.Sword(jugador);
+                        Item.Sword sword = new Item.Sword();
+                        jugador.Actions.AddItem(sword);
                         Console.WriteLine($"La espada ha aumentado tu poder de ataque a {jugador.Attack}");
                         break;
                     case "2":
-                        Item.MagicStaff(jugador);
+                        Item.MagicStaff magicstaff = new Item.MagicStaff();
+                        jugador.Actions.AddItem(magicstaff);
                         Console.WriteLine($"El bastón mágico ha aumentado tu poder de ataque a {jugador.Attack}");
                         break;
                     case "3":
-                        Item.Axe(jugador);
+                        Item.Axe axe = new Item.Axe();
+                        jugador.Actions.AddItem(axe);
                         Console.WriteLine($"El hacha ha aumentado tu poder de ataque a {jugador.Attack}");
                         break;
                     case "4":
-                        Item.Shield(jugador);
+                        Item.Shield shield = new Item.Shield();
+                        jugador.Actions.AddItem(shield);
                         Console.WriteLine($"El escudo ha aumentado tu poder de defensa a {jugador.Defense}");
                         break;
                     case "5":
-                        Item.Armor(jugador);
+                        Item.Armor armor = new Item.Armor();
+                        jugador.Actions.AddItem(armor);
                         Console.WriteLine($"La armadura ha aumentado tu poder de defensa a {jugador.Defense}");
                         break;
                     case "6":
-                        Item.Helmet(jugador);
+                        Item.Helmet helmet = new Item.Helmet();
+                        jugador.Actions.AddItem(helmet);
                         Console.WriteLine($"El casco ha aumentado tu poder de defensa a {jugador.Defense}");
                         break;
                     case "7":
-                        autenticator = SpecialItems.SpellBook(jugador);
-                        if (autenticator)
-                            Console.WriteLine($"El libro de hechizos ha aumentado tu defensa a {jugador.Defense}");
+                        Item.SpellBook spellBook = new Item.SpellBook(jugador);
+                        if (jugador.Actions.AddItem(spellBook))
+                            Console.WriteLine($"El libro de hechizos ha aumentado tu ataque a {jugador.Attack} y tu defensa a {jugador.Defense}");
                         else
                             Console.WriteLine("Lo siento, solo un mago puede usar este ítem. Elige otro");
                         break;
                 }
-
-                // Si el SpellBook no fue válido, repetir selección
-                if (!autenticator)
-                    i -= 1;
             }
 
             
@@ -179,15 +180,14 @@ namespace Program
             
             
             Console.WriteLine("Es hora de que se equipe, elige dos items");
-            for (int i = 0; i < 2; i++)
+            while (oponente.Item.Count < 2)
             {
-                bool autenticator = true;
                 string seleccion_item = "0";
                 int numero = Convert.ToInt32(seleccion_item);
-                Console.WriteLine($"{i + 1}/2");
 
                 while (numero > 7 || numero < 1)
                 {
+                    Console.WriteLine($"{oponente.Item.Count}/2");
                     Console.WriteLine(
                         " 1 - Espada\n 2 - Baculo Magico\n 3 - Hacha \n 4 - Shield\n 5 - Armor\n 6 - Helmet \n 7 - SpellBook");
                     seleccion_item = Console.ReadLine();
@@ -199,40 +199,43 @@ namespace Program
                 switch (seleccion_item)
                 {
                     case "1":
-                        Item.Sword(oponente);
+                        Item.Sword sword = new Item.Sword();
+                        oponente.Actions.AddItem(sword);
                         Console.WriteLine($"La espada ha aumentado tu poder de ataque a {oponente.Attack}");
                         break;
                     case "2":
-                        Item.MagicStaff(oponente);
+                        Item.MagicStaff magicstaff = new Item.MagicStaff();
+                        oponente.Actions.AddItem(magicstaff);
                         Console.WriteLine($"El bastón mágico ha aumentado tu poder de ataque a {oponente.Attack}");
                         break;
                     case "3":
-                        Item.Axe(oponente);
+                        Item.Axe axe = new Item.Axe();
+                        oponente.Actions.AddItem(axe);
                         Console.WriteLine($"El hacha ha aumentado tu poder de ataque a {oponente.Attack}");
                         break;
                     case "4":
-                        Item.Shield(oponente);
+                        Item.Shield shield = new Item.Shield();
+                        oponente.Actions.AddItem(shield);
                         Console.WriteLine($"El escudo ha aumentado tu poder de defensa a {oponente.Defense}");
                         break;
                     case "5":
-                        Item.Armor(oponente);
+                        Item.Armor armor = new Item.Armor();
+                        oponente.Actions.AddItem(armor);
                         Console.WriteLine($"La armadura ha aumentado tu poder de defensa a {oponente.Defense}");
                         break;
                     case "6":
-                        Item.Helmet(oponente);
+                        Item.Helmet helmet = new Item.Helmet();
+                        oponente.Actions.AddItem(helmet);
                         Console.WriteLine($"El casco ha aumentado tu poder de defensa a {oponente.Defense}");
                         break;
                     case "7":
-                        autenticator = SpecialItems.SpellBook(oponente);
-                        if (autenticator)
-                            Console.WriteLine($"El libro de hechizos ha aumentado tu defensa a {oponente.Defense}");
+                        Item.SpellBook spellBook = new Item.SpellBook(oponente);
+                        if (oponente.Actions.AddItem(spellBook))
+                            Console.WriteLine($"El libro de hechizos ha aumentado tu ataque a {oponente.Attack} y tu defensa a {oponente.Defense}");
                         else
                             Console.WriteLine("Lo siento, solo un mago puede usar este ítem. Elige otro");
                         break;
                 }
-
-                if (!autenticator)
-                    i -= 1;
             }
 
             // ============================================
@@ -252,14 +255,14 @@ namespace Program
                     action = Console.ReadLine();
                     if (action == "1")
                     {
-                        Actions.Attack(jugador, oponente);
+                        jugador.Actions.Attack(oponente);
                         Console.WriteLine("Atacando…");
                         Console.WriteLine($"La vida de {oponente.Name} es {oponente.CurrentHealth}\n");
                     }
                     else if (action == "2")
                     {
                         Console.WriteLine($"Vida actual de {jugador.Name}: {jugador.CurrentHealth}\nCurando…");
-                        Actions.Heal(jugador);
+                        jugador.Actions.Heal();
                         Console.WriteLine($"Nueva vida de {jugador.Name}: {jugador.CurrentHealth}\n");
                     }
                     else
@@ -269,26 +272,29 @@ namespace Program
                 }
 
                 // Turno del oponente
-                Console.WriteLine($"\n{oponente.Name}, elige una acción:\n 1 - Atacar\n 2 - Curar\n");
-                string action2 = "";
-                while (action2 != "1" && action2 != "2")
+                if (oponente.CurrentHealth > 0)
                 {
-                    action2 = Console.ReadLine();
-                    if (action2 == "1")
+                    Console.WriteLine($"\n{oponente.Name}, elige una acción:\n 1 - Atacar\n 2 - Curar\n");
+                    string action2 = "";
+                    while (action2 != "1" && action2 != "2")
                     {
-                        Actions.Attack(oponente, jugador);
-                        Console.WriteLine("Atacando…");
-                        Console.WriteLine($"La vida de {jugador.Name} es {jugador.CurrentHealth}\n");
-                    }
-                    else if (action2 == "2")
-                    {
-                        Console.WriteLine($"Vida actual de {oponente.Name}: {oponente.CurrentHealth}\nCurando…");
-                        Actions.Heal(oponente);
-                        Console.WriteLine($"Nueva vida de {oponente.Name}: {oponente.CurrentHealth}\n");
-                    }
-                    else
-                    {
-                        Console.WriteLine("ERROR: Selecciona una opción válida\n");
+                        action2 = Console.ReadLine();
+                        if (action2 == "1")
+                        {
+                            oponente.Actions.Attack(jugador);
+                            Console.WriteLine("Atacando…");
+                            Console.WriteLine($"La vida de {jugador.Name} es {jugador.CurrentHealth}\n");
+                        }
+                        else if (action2 == "2")
+                        {
+                            Console.WriteLine($"Vida actual de {oponente.Name}: {oponente.CurrentHealth}\nCurando…");
+                            oponente.Actions.Heal();
+                            Console.WriteLine($"Nueva vida de {oponente.Name}: {oponente.CurrentHealth}\n");
+                        }
+                        else
+                        {
+                            Console.WriteLine("ERROR: Selecciona una opción válida\n");
+                        }
                     }
                 }
             }
