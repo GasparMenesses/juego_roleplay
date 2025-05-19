@@ -1,6 +1,5 @@
 using Library;
 using Library.Elementos;
-using Library.Interfaces;
 using Library.Personajes;
 
 namespace LibraryTests;
@@ -26,9 +25,7 @@ public class Tests
     public void FalseEquipTest()
     { 
         Item.SpellBook spellbook = new Item.SpellBook(_character1);
-        _character1.Actions.AddItem(spellbook);
-        Assert.IsFalse(_character1.Item.Contains(spellbook),"Deberia ser false");
-
+        Assert.IsFalse(_character1.Actions.AddItem(spellbook),"Deberia ser false");
     }
     /// <summary>
     /// Este test verifica que un personaje que si puede equipar un SpellBook 
@@ -38,8 +35,7 @@ public class Tests
     public void TrueEquipTest()
     {
         Item.SpellBook spellBook = new Item.SpellBook(_character2);
-        _character2.Actions.AddItem(spellBook);
-        Assert.IsTrue(_character2.Item.Contains(spellBook),"Deberia ser true");
+        Assert.IsTrue(_character2.Actions.AddItem(spellBook),"Deberia ser true");
     }
     /// <summary>
     /// Este test comprueba que al equipar un ítem ofensivo
@@ -52,11 +48,6 @@ public class Tests
         Item.Axe axe = new Item.Axe();
         _character1.Actions.AddItem(axe);
         int afterEquip = _character1.Attack;
-        foreach (IItem item in _character1.Item)
-        {
-            if (item is IOffensiveItemElement offensive)
-                afterEquip += offensive.AttackValue;
-        }
         Assert.That(afterEquip, Is.Not.EqualTo(beforeEquip), "El ataque no cambio despues de equipar el hacha");
     }
     /// <summary>
