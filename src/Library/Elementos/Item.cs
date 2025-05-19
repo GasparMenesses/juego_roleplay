@@ -63,7 +63,10 @@ public class Item
         public int AttackValue { get; }
         public int DefenseValue { get; }
         public bool CanBeEquipped { get; }
-
+        
+        /// <summary>
+        /// Recibe el personaje al que se desea equipar
+        /// </summary>
         public SpellBook(ICharacter character)
         {
             AttackValue = 6;
