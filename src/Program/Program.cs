@@ -53,7 +53,7 @@ namespace Program
             // Utiliza expresión switch para instanciar la subclase adecuada
             // según la selección de raza.
             // ============================================
-            Character jugador = SeleccionPersonaje switch
+            Hero jugador = SeleccionPersonaje switch
             {
                 "1" => new Wizard(Nombre),
                 "2" => new Elve(Nombre),
@@ -170,7 +170,7 @@ namespace Program
             // Utiliza expresión switch para instanciar la subclase adecuada
             // según la selección de raza.
             // ============================================
-            Character oponente = SeleccionPersonaje switch
+            Hero oponente = SeleccionPersonaje switch
             {
                 "1" => new Wizard(Nombre),
                 "2" => new Elve(Nombre),

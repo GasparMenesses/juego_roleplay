@@ -1,6 +1,6 @@
 ﻿namespace Library.Personajes;
 
-public class Dwarve : Character // la clase Dwarve hereda de la clase character
+public class Dwarve : Hero // la clase Dwarve hereda de la clase character
 {
     private static readonly Random maxHealth = new Random(); //usamos random static para inicializar la salud en el valor máximo
     public Dwarve(string name)  //Ese : base(...) le dice al compilador “antes de ejecutar el cuerpo de este constructor, invoca el constructor de la clase padre (Character) pasándole estos parámetros”

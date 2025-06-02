@@ -6,8 +6,8 @@ namespace LibraryTests;
 
 public class Tests
 {
-    private Character _character1;
-    private Character _character2;
+    private Hero _character1;
+    private Hero _character2;
     /// <summary>
     /// Inicializa dos personajes: un Enano y un Mago
     /// </summary>
