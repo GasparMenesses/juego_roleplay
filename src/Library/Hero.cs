@@ -13,9 +13,10 @@ public class Hero : ICharacter
         public int Attack { get; set; }
         public int Defense { get; set; }
         public List<IItem> Item { get; set; } 
+        public int CuerrentWp { get; set; }
 
 
-        public Hero(string name,string race, int maxhealth, int attack, int defense)
+        public Hero(string name,string race, int maxhealth, int attack, int defense, int currentwp)
         {
             Name = name;
             Race = race;
@@ -25,6 +26,7 @@ public class Hero : ICharacter
             Defense = defense;
             Item = new List<IItem>();
             this.Actions = new Actions(this);
+            CuerrentWp = currentwp;
         }
     
 }
