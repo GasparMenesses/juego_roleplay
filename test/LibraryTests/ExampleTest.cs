@@ -83,4 +83,22 @@ public class Tests
         _character1.Actions.Attack(_character2);
         Assert.That(_character2.CurrentHealth, Is.EqualTo(0));
     }
+
+    [Test]
+    public void CharacterDie()
+    {
+        _character2.CurrentHealth = 1;
+        _character1.Actions.Attack(_character2);
+        Assert.That(_character2.CurrentHealth, Is.EqualTo(0));
+    }
+    
+    [Test]
+    public void CharacterDieAtack()
+    {
+        _character2.CurrentHealth = 0;
+        _character1.Actions.Attack(_character2);
+        Assert.That(_character2.CurrentHealth, Is.EqualTo(0));
+    }
+    
+    
 }
