@@ -73,6 +73,19 @@ public class Tests
         _character1.Actions.Heal();
         Assert.That(_character1.CurrentHealth, Is.Not.EqualTo(1), "La vida actual no aumento despues de curarse");
     }
+    
+    /// <summary>
+    /// Este test comprueba si la vida de el personaje al ser atacado disminuye a cero correctamente
+    /// </summary>
+
+    [Test]
+    public void CharacterDie()
+    {
+        _character2.CurrentHealth = 1;
+        _character1.Actions.Attack(_character2);
+        Assert.That(_character2.CurrentHealth, Is.EqualTo(0));
+    }
+    
     /// <summary>
     /// Este test comprueba si la vida de el personaje al ser atacado disminuye a menos de cero
     /// </summary>
@@ -83,14 +96,11 @@ public class Tests
         _character1.Actions.Attack(_character2);
         Assert.That(_character2.CurrentHealth, Is.EqualTo(0));
     }
-
-    [Test]
-    public void CharacterDie()
-    {
-        _character2.CurrentHealth = 1;
-        _character1.Actions.Attack(_character2);
-        Assert.That(_character2.CurrentHealth, Is.EqualTo(0));
-    }
+    
+    
+    /// <summary>
+    /// Este test comprueba si la vida de el personaje muerto al ser atacado disminuye a menos de cero
+    /// </summary>
     
     [Test]
     public void CharacterDieAtack()
