@@ -66,7 +66,7 @@ namespace Program
             
             
             Console.WriteLine(
-                $"Has creado al {jugador.Race} {jugador.Name} con {jugador.CurrentHealth} de vida, {jugador.Attack} de ataque y {jugador.Defense} de defensa\n");
+                $"Has creado al {jugador.Race} {jugador.Name} con {jugador.CurrentHealth} de vida, {jugador.Attack} de ataque, {jugador.Defense} de defensa\n y  con {jugador.CuerrentWp} puntos de vida " );
 
             // ============================================
             // 3. Equipamiento del jugador
@@ -173,7 +173,7 @@ namespace Program
             // Utiliza expresión switch para instanciar la subclase adecuada
             // según la selección de raza.
             // ============================================
-            Enemy oponente = SeleccionEnemigo switch
+            Enemy enemigo = SeleccionEnemigo switch
             {
                 "1" => new Shrek(NombreEnemigo),
                 "2" => new Goblin(NombreEnemigo),                // nuevo
@@ -183,14 +183,14 @@ namespace Program
             
             
             Console.WriteLine("Es hora de que se equipe, elige dos items");
-            while (oponente.Item.Count < 2)
+            while (enemigo.Item.Count < 2)
             {
                 string seleccion_item = "0";
                 int numero = Convert.ToInt32(seleccion_item);
 
                 while (numero > 7 || numero < 1)
                 {
-                    Console.WriteLine($"{oponente.Item.Count}/2");
+                    Console.WriteLine($"{enemigo.Item.Count}/2");
                     Console.WriteLine(
                         " 1 - Espada\n 2 - Baculo Magico\n 3 - Hacha \n 4 - Shield\n 5 - Armor\n 6 - Helmet \n 7 - SpellBook");
                     seleccion_item = Console.ReadLine();
@@ -203,38 +203,38 @@ namespace Program
                 {
                     case "1":
                         Item.Sword sword = new Item.Sword();
-                        oponente.Actions.AddItem(sword);
-                        Console.WriteLine($"La espada ha aumentado tu poder de ataque a {oponente.Attack}");
+                        enemigo.Actions.AddItem(sword);
+                        Console.WriteLine($"La espada ha aumentado tu poder de ataque a {enemigo.Attack}");
                         break;
                     case "2":
                         Item.MagicStaff magicstaff = new Item.MagicStaff();
-                        oponente.Actions.AddItem(magicstaff);
-                        Console.WriteLine($"El bastón mágico ha aumentado tu poder de ataque a {oponente.Attack}");
+                        enemigo.Actions.AddItem(magicstaff);
+                        Console.WriteLine($"El bastón mágico ha aumentado tu poder de ataque a {enemigo.Attack}");
                         break;
                     case "3":
                         Item.Axe axe = new Item.Axe();
-                        oponente.Actions.AddItem(axe);
-                        Console.WriteLine($"El hacha ha aumentado tu poder de ataque a {oponente.Attack}");
+                        enemigo.Actions.AddItem(axe);
+                        Console.WriteLine($"El hacha ha aumentado tu poder de ataque a {enemigo.Attack}");
                         break;
                     case "4":
                         Item.Shield shield = new Item.Shield();
-                        oponente.Actions.AddItem(shield);
-                        Console.WriteLine($"El escudo ha aumentado tu poder de defensa a {oponente.Defense}");
+                        enemigo.Actions.AddItem(shield);
+                        Console.WriteLine($"El escudo ha aumentado tu poder de defensa a {enemigo.Defense}");
                         break;
                     case "5":
                         Item.Armor armor = new Item.Armor();
-                        oponente.Actions.AddItem(armor);
-                        Console.WriteLine($"La armadura ha aumentado tu poder de defensa a {oponente.Defense}");
+                        enemigo.Actions.AddItem(armor);
+                        Console.WriteLine($"La armadura ha aumentado tu poder de defensa a {enemigo.Defense}");
                         break;
                     case "6":
                         Item.Helmet helmet = new Item.Helmet();
-                        oponente.Actions.AddItem(helmet);
-                        Console.WriteLine($"El casco ha aumentado tu poder de defensa a {oponente.Defense}");
+                        enemigo.Actions.AddItem(helmet);
+                        Console.WriteLine($"El casco ha aumentado tu poder de defensa a {enemigo.Defense}");
                         break;
                     case "7":
-                        Item.SpellBook spellBook = new Item.SpellBook(oponente);
-                        if (oponente.Actions.AddItem(spellBook))
-                            Console.WriteLine($"El libro de hechizos ha aumentado tu ataque a {oponente.Attack} y tu defensa a {oponente.Defense}");
+                        Item.SpellBook spellBook = new Item.SpellBook(enemigo);
+                        if (enemigo.Actions.AddItem(spellBook))
+                            Console.WriteLine($"El libro de hechizos ha aumentado tu ataque a {enemigo.Attack} y tu defensa a {enemigo.Defense}");
                         else
                             Console.WriteLine("Lo siento, solo un mago puede usar este ítem. Elige otro");
                         break;
@@ -245,28 +245,28 @@ namespace Program
             // 5. Bucle de combate
             // Alterna turnos de ataque o curación hasta que uno pierda toda su vida.
             // ============================================
-            while (jugador.CurrentHealth > 0 && oponente.CurrentHealth > 0)
+            while (jugador.CurrentHealth > 0 && enemigo.CurrentHealth > 0)
             {
                 Console.WriteLine(
-                    $"VIDA {jugador.Name} = {jugador.CurrentHealth}          VIDA {oponente.Name} = {oponente.CurrentHealth} \n");
+                    $"VIDA {jugador.Name} = {jugador.CurrentHealth}          VIDA {enemigo.Name} = {enemigo.CurrentHealth} \n");
 
                 // Turno del jugador
-                Console.WriteLine($"\n{jugador.Name}, elige una acción:\n 1 - Atacar\n 2 - Curar\n");
+                Console.WriteLine($"\n{enemigo.Name}, elige una acción:\n 1 - Atacar\n 2 - Curar\n");
                 string action = "";
                 while (action != "1" && action != "2")
                 {
                     action = Console.ReadLine();
                     if (action == "1")
                     {
-                        jugador.Actions.Attack(oponente);
+                        jugador.Actions.Attack(jugador);
                         Console.WriteLine("Atacando…");
-                        Console.WriteLine($"La vida de {oponente.Name} es {oponente.CurrentHealth}\n");
+                        Console.WriteLine($"La vida de {jugador.Name} es {jugador.CurrentHealth}\n");
                     }
                     else if (action == "2")
                     {
-                        Console.WriteLine($"Vida actual de {jugador.Name}: {jugador.CurrentHealth}\nCurando…");
+                        Console.WriteLine($"Vida actual de {enemigo.Name}: {enemigo.CurrentHealth}\nCurando…");
                         jugador.Actions.Heal();
-                        Console.WriteLine($"Nueva vida de {jugador.Name}: {jugador.CurrentHealth}\n");
+                        Console.WriteLine($"Nueva vida de {enemigo.Name}: {enemigo.CurrentHealth}\n");
                     }
                     else
                     {
@@ -275,24 +275,24 @@ namespace Program
                 }
 
                 // Turno del oponente
-                if (oponente.CurrentHealth > 0)
+                if (jugador.CurrentHealth > 0)
                 {
-                    Console.WriteLine($"\n{oponente.Name}, elige una acción:\n 1 - Atacar\n 2 - Curar\n");
+                    Console.WriteLine($"\n{jugador.Name}, elige una acción:\n 1 - Atacar\n 2 - Curar\n");
                     string action2 = "";
                     while (action2 != "1" && action2 != "2")
                     {
                         action2 = Console.ReadLine();
                         if (action2 == "1")
                         {
-                            oponente.Actions.Attack(jugador);
+                            enemigo.Actions.Attack(enemigo);
                             Console.WriteLine("Atacando…");
-                            Console.WriteLine($"La vida de {jugador.Name} es {jugador.CurrentHealth}\n");
+                            Console.WriteLine($"La vida de {enemigo.Name} es {enemigo.CurrentHealth}\n");
                         }
                         else if (action2 == "2")
                         {
-                            Console.WriteLine($"Vida actual de {oponente.Name}: {oponente.CurrentHealth}\nCurando…");
-                            oponente.Actions.Heal();
-                            Console.WriteLine($"Nueva vida de {oponente.Name}: {oponente.CurrentHealth}\n");
+                            Console.WriteLine($"Vida actual de {jugador.Name}: {jugador.CurrentHealth}\nCurando…");
+                            enemigo.Actions.Heal();
+                            Console.WriteLine($"Nueva vida de {jugador.Name}: {jugador.CurrentHealth}\n");
                         }
                         else
                         {
@@ -306,10 +306,10 @@ namespace Program
             // 6. Determinación del ganador
             // Compara las vidas finales y anuncia el resultado.
             // ============================================
-            if (jugador.CurrentHealth > oponente.CurrentHealth)
+            if (jugador.CurrentHealth > enemigo.CurrentHealth)
                 Console.WriteLine($"\nHa ganado: {jugador.Name}!!");
-            else if (oponente.CurrentHealth > jugador.CurrentHealth)
-                Console.WriteLine($"\nHa ganado: {oponente.Name}!!");
+            else if (enemigo.CurrentHealth > jugador.CurrentHealth)
+                Console.WriteLine($"\nHa ganado: {enemigo.Name}!!");
             else
                 Console.WriteLine("\nHa sido un empate");
 
