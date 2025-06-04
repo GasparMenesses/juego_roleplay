@@ -1,6 +1,6 @@
 using Library;
 using Library.Elementos;
-using Library.Personajes;
+using Library.Personajes.Heroes;
 
 namespace LibraryTests;
 

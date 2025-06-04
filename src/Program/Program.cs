@@ -1,6 +1,7 @@
 ﻿using Library;
 using Library.Elementos;
-using Library.Personajes;
+using Library.Personajes.Heroes;
+using Library.Personajes.Enemigos;
 
 namespace Program
 {
@@ -25,6 +26,8 @@ namespace Program
             
             string SeleccionPersonaje = "";
             string Nombre = "";
+            string SeleccionEnemigo = "";//nuevo
+            string NombreEnemigo = "";      //nuevo
 
             // ============================================
             // Bucle de validación de raza
@@ -45,7 +48,7 @@ namespace Program
             // Solicitud del nombre del personaje
             // Lee una cadena desde la consola y la asigna.
             // ============================================
-            Console.WriteLine("Ingrese un nombre para su personaje: ");
+            Console.WriteLine("Ingrese un nombre para su heroe: ");
             Nombre = Console.ReadLine();
 
             // ============================================
@@ -132,27 +135,27 @@ namespace Program
                         break;
                 }
             }
-
+            
             
             
             ////////////////////////////////////OPONENTE//////////////////////////////////////
             // ============================================
-            // 4. Creación y equipamiento del oponente
-            // Mismo flujo que para el jugador, usando la variable 'oponente'.
+            // 4. Creación y equipamiento del Enemigo
+            // Mismo flujo que para el jugador, usando la variable 'Enemigo'.
             // ============================================
-            Console.WriteLine($"\nSelecciona tu Oponente");
-            SeleccionPersonaje = "";
+            Console.WriteLine($"\nSelecciona a tu enemigo");
+            
 
             // ============================================
             // Bucle de validación de raza
             // Permite elegir entre Mago (1), Elfo (2) o Enano (3).
             // Repite hasta que la entrada sea válida.
             // ============================================
-            while (SeleccionPersonaje != "1" && SeleccionPersonaje != "2" && SeleccionPersonaje != "3")
+            while (SeleccionEnemigo != "1" && SeleccionEnemigo != "2" && SeleccionEnemigo != "3") 
             {
-                Console.WriteLine(" 1 - Mago\n 2 - Elfo\n 3 - Enano");
-                SeleccionPersonaje = Console.ReadLine();
-                if (SeleccionPersonaje != "1" && SeleccionPersonaje != "2" && SeleccionPersonaje != "3")
+                Console.WriteLine(" 1 - Gato con Botas\n 2 - Shrek\n 3 - Goblin");    //nuevo
+                SeleccionEnemigo = Console.ReadLine();
+                if (SeleccionEnemigo != "1" && SeleccionEnemigo != "2" && SeleccionEnemigo != "3")
                 {
                     Console.WriteLine("ERROR, por favor ingrese una opción válida");
                 }
@@ -162,19 +165,19 @@ namespace Program
             // Solicitud del nombre del oponente
             // Lee una cadena desde la consola y la asigna.
             // ============================================
-            Console.WriteLine("Ingrese un nombre para su personaje: ");
-            Nombre = Console.ReadLine();
+            Console.WriteLine("Ingrese un nombre para su Enemigo: ");// quizas sacar
+            NombreEnemigo = Console.ReadLine();
 
             // ============================================
             // Creación del objeto Character
             // Utiliza expresión switch para instanciar la subclase adecuada
             // según la selección de raza.
             // ============================================
-            Hero oponente = SeleccionPersonaje switch
+            Enemy oponente = SeleccionEnemigo switch
             {
-                "1" => new Wizard(Nombre),
-                "2" => new Elve(Nombre),
-                "3" => new Dwarve(Nombre),
+                "1" => new Shrek(NombreEnemigo),
+                "2" => new Goblin(NombreEnemigo),                // nuevo
+                "3" => new GatoConBotas(NombreEnemigo),
             };
             
             

@@ -1,4 +1,4 @@
-namespace Library.Personajes;
+namespace Library.Personajes.Enemigos;
 
 public class GatoConBotas : Enemy
 {

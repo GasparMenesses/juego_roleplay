@@ -1,4 +1,4 @@
-﻿namespace Library.Personajes;
+﻿namespace Library.Personajes.Heroes;
 
 public class Dwarve : Hero // la clase Dwarve hereda de la clase character
 {

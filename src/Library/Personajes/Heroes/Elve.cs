@@ -1,4 +1,4 @@
-﻿namespace Library.Personajes;
+﻿namespace Library.Personajes.Heroes;
 
 public class Elve : Hero // la clase Elve hereda de la clase character
 {

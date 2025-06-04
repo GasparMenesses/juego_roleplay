@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace Library.Personajes;
+namespace Library.Personajes.Enemigos;
 
 public class Shrek : Enemy
 {
