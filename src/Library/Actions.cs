@@ -20,6 +20,10 @@ public class Actions
             attacked.CurrentHealth -= (this.Character.Attack - attacked.Defense);
         if (attacked.CurrentHealth < 0)
             attacked.CurrentHealth = 0;
+        if (attacked.CurrentHealth == 0)
+            if (attacked is Enemy enemy)
+                if (this.Character is Hero hero)
+                    hero.CuerrentWp += enemy.Wp;
     }
     /// <summary>
     /// Cura al personaje actual

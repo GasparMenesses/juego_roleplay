@@ -13,12 +13,11 @@ public class Enemy : ICharacter
     public int Attack { get; set; }
     public int Defense { get; set; }
     public List<IItem> Item { get; set; } 
-    public int Maxwp { get; }
+    public int Wp { get; }
     
-    public int CurrentWp { get; set; }
 
 
-    public Enemy(string name,string race, int maxhealth, int attack, int defense, int maxwp, int currentWp)
+    public Enemy(string name,string race, int maxhealth, int attack, int defense, int wp)
     {
         Name = name;
         Race = race;
@@ -28,8 +27,7 @@ public class Enemy : ICharacter
         Defense = defense;
         Item = new List<IItem>();
         this.Actions = new Actions(this);
-        Maxwp = maxwp;
-        CurrentWp = currentWp;
+        Wp = wp;
     }
     
 }
