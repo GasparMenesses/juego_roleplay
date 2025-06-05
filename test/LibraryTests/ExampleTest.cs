@@ -115,6 +115,6 @@ public class Tests
         int currentwp = _hero1.CuerrentWp;
         _enemy1.CurrentHealth = 1;
         _hero1.Actions.Attack(_enemy1);
-        Assert.That(currentwp, Is.LessThan(0));
+        Assert.That(currentwp, Is.LessThan(_hero1.CuerrentWp));
     }
 }
